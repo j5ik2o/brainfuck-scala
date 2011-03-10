@@ -1,6 +1,6 @@
 package com.github.j5ik2o.brainfuck
 
-class BrainfuckException extends RuntimeException
+case class BrainfuckException(msg:String) extends RuntimeException
 
 class BrainfuckRuntime(parser: BrainfuckParser, size: Int) {
   require(size > 0)
@@ -22,7 +22,7 @@ class BrainfuckRuntime(parser: BrainfuckParser, size: Int) {
       evaluateExpressions(parseResult.get)
       println
     } else {
-      throw new BrainfuckException
+      throw new BrainfuckException("parse error")
     }
   }
 
@@ -43,7 +43,7 @@ class BrainfuckRuntime(parser: BrainfuckParser, size: Int) {
   // 以下、ランタイムが持つAPI
 
   private def validateRange =
-    if (pointer < 0 || pointer > size) throw new BrainfuckException()
+    if (counter > size) throw new BrainfuckException("limit over")
 
   private def m = {
     validateRange
