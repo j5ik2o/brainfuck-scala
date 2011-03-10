@@ -45,12 +45,12 @@ class BrainfuckRuntime(parser: BrainfuckParser, size: Int) {
   private def validateRange =
     if (counter > size) throw new BrainfuckException("limit over")
 
-  private def m = {
+  private def readMemory = {
     validateRange
     memory(pointer)
   }
 
-  private def m(b: Int) = {
+  private def writeMemory(b: Int) = {
     validateRange
     memory(pointer) = b
   }
@@ -69,19 +69,19 @@ class BrainfuckRuntime(parser: BrainfuckParser, size: Int) {
   }
 
   private def incrementMemoryAtPointer {
-    m(m + 1)
+    writeMemory(readMemory + 1)
   }
 
   private def decrementMemoryAtPointer {
-    m(m - 1)
+    writeMemory(readMemory - 1)
   }
 
   private def outputMemoryAtPointer {
-    print(m.toChar)
+    print(readMemory.toChar)
   }
 
   private def loop(expressions: List[Expression]) {
-    while (m != 0) {
+    while (readMemory != 0) {
       evaluateExpressions(expressions)
     }
   }
