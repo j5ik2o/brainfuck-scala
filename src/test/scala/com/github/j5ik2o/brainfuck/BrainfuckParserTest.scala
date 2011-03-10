@@ -10,7 +10,7 @@ class BrainfuckParserTest extends FunSuite {
 ++++++++[<++++>-]<+.[-]++++++++++."""
 
     val parser = new BrainfuckParser()
-    val runtime = new BrainfuckRuntime(parser, 2)
+    val runtime = new BrainfuckRuntime(parser)
     try {
       runtime.execute(helloWorld)
     } catch {

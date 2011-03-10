@@ -81,7 +81,7 @@ class BrainfuckRuntime(parser: BrainfuckParser, size: Int) {
   }
 
   private def loop(expressions: List[Expression]) {
-    while (memory(pointer) != 0) {
+    while (m != 0) {
       evaluateExpressions(expressions)
     }
   }
