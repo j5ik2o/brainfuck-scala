@@ -23,7 +23,7 @@ case class OutputMemoryAtPointerExpression extends Expression
 case class LoopExpression(expressions:List[Expression]) extends Expression
 
 // Brainfuckパーサ
-class BrainfuckParser extends JavaTokenParsers {
+class BrainfuckParser extends RegexParsers {
 
   def parse(source:String) = parseAll(brainfuck, source)
 
